@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+EXEC SQL INCLUDE sqlca;
+
+int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char dbname[1024] = "postgres";
+    char user[1024] = "postgres";
+    char password[1024] = "postgres";
+    char id[10];
+    char username[50];
+    EXEC SQL END DECLARE SECTION;
+
+    EXEC SQL CONNECT TO :dbname USER :user USING :password;
+    
+    if (sqlca.sqlcode != 0) {
+        fprintf(stderr, "Connection to database failed: %s\n", sqlca.sqlerrm.sqlerrmc);
+        exit(1);
+    }
+
+    printf("Connection to database successful\n");
+
+    EXEC SQL SELECT id, username INTO :id, :username FROM users LIMIT 1;
+
+    if (sqlca.sqlcode == 0) {
+        printf("User ID: %s, Username: %s\n", id, username);
+    } else if (sqlca.sqlcode == 100) {
+        printf("No data retrieved\n");
+    } else {
+        fprintf(stderr, "SELECT failed: %s\n", sqlca.sqlerrm.sqlerrmc);
+        EXEC SQL DISCONNECT;
+        exit(1);
+    }
+
+    EXEC SQL DISCONNECT;
+
+    return 0;
+}
