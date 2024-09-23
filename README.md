@@ -5,15 +5,28 @@ brew services start postgresql@14
 ```
 
 ### データディレクトリを使用する方法
+サーバーを作成
 ```
 initdb -D yourData
 ```
+開始
 ```
 pg_ctl -D yourData -l logfile start
 ```
-止める時
+終了
 ```
 pg_ctl -D yourData stop
+```
+確認
+```
+ps aux | grep postgres
+```
+```
+lsof -i:5432
+```
+強制終了
+```
+kill -9 PID
 ```
 
 コンパイル方法
