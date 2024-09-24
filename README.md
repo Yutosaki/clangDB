@@ -50,6 +50,6 @@ sudo make install
 ```
 option (並行処理)
 ```
-make j6
+make j6 (6はコア数、変更可能)
 ```
 
