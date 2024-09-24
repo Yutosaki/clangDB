@@ -41,3 +41,15 @@ ecpg test.pgc
 gcc -I your/header/include/path -L your/liker/file/path
 ```
 
+postgresqlのソースコードを変更したものを読み込ませる
+```
+make clean
+./configure
+make
+sudo make install
+```
+option (並行処理)
+```
+make j6
+```
+
