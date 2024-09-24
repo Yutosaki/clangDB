@@ -19,6 +19,9 @@ pg_ctl -D yourData stop
 ```
 確認
 ```
+pg_ctl -D youData status
+```
+```
 ps aux | grep postgres
 ```
 ```
