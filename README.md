@@ -48,8 +48,12 @@ make clean
 make
 sudo make install
 ```
+
 option (並行処理)
 ```
 make j6 (6はコア数、変更可能)
 ```
-
+PostgreSQL基本コマンド
+```
+psql -D userName -d databaseName
+```
