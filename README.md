@@ -1,10 +1,13 @@
-### DBの起動方法
+## DBの起動方法
 Homebrewの場合
+```
+brwe services list
+```
 ```
 brew services start postgresql@14
 ```
 
-### データディレクトリを使用する方法
+## データディレクトリを使用する方法
 サーバーを作成
 ```
 initdb -D yourData
@@ -32,7 +35,7 @@ lsof -i:5432
 kill -9 PID
 ```
 
-コンパイル方法
+## コンパイル方法
 pgcファイルの場合
 ```
 ecpg test.pgc
@@ -53,7 +56,10 @@ option (並行処理)
 ```
 make j6 (6はコア数、変更可能)
 ```
-PostgreSQL基本コマンド
+
+## PostgreSQL基本コマンド
 ```
-psql -D userName -d databaseName
+psql -U userName -d databaseName
+```
+
 ```
